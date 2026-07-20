@@ -31,4 +31,5 @@ export interface ScannedFood {
   recipeThumb: string;
   recipeIngredients: string; // Semicolon separated list
   recipeInstructions: string;
+  isSimulated?: boolean; // True if returned from server simulation due to API limits
 }

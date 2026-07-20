@@ -148,6 +148,16 @@ export const ResultView: React.FC<ResultViewProps> = ({
 
       {/* Main Details Body */}
       <div className="flex-1 max-w-xl mx-auto w-full">
+        {foodItem.isSimulated && (
+          <div className="mx-4 mt-4 bg-amber-50/80 backdrop-blur-xs border border-amber-200/60 rounded-2xl p-4 flex gap-3 shadow-xs">
+            <AlertCircle className="text-amber-500 shrink-0 w-5 h-5 mt-0.5" />
+            <div className="text-xs text-amber-800 leading-relaxed">
+              <p className="font-extrabold mb-1">💡 Mode Simulasi Aktif (API Limit)</p>
+              Sistem mendeteksi batas kuota harian/gratis API Gemini Anda saat ini telah terlampaui (Error 429). Aplikasi secara otomatis beralih ke **Mode Deteksi Lokal & Simulasi Cerdas** agar fitur scan tetap berfungsi lancar tanpa terhenti!
+            </div>
+          </div>
+        )}
+
         {/* 1. Food Picture Header */}
         <div className="relative w-full h-64 bg-gray-900 overflow-hidden">
           {foodItem.imagePath ? (

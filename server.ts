@@ -47,7 +47,8 @@ const FALLBACK_LABELS = [
   "Sate Matang", "Nasi Goreng", "Sate Ayam", "Rendang", "Bakso", 
   "Soto Ayam", "Gado-Gado", "Martabak", "Nasi Uduk", "Mie Goreng",
   "Burger", "Pizza", "Salad", "Chocolate Cake", "Sushi", 
-  "Ramen", "Spaghetti Carbonara", "Kebab", "Tacos", "Steak"
+  "Ramen", "Spaghetti Carbonara", "Kebab", "Tacos", "Steak",
+  "Lontong Sayur", "Mie Aceh"
 ];
 
 // Fallback Nutrition Generator matching GeminiManager.kt
@@ -56,7 +57,11 @@ function generateSimulationNutrition(foodName: string) {
   if (nameLower.includes("eiffel") || nameLower.includes("flower") || nameLower.includes("pot") || nameLower.includes("non-makanan")) {
     return { calories: 0, carbs: 0, fat: 0, fiber: 0, protein: 0 };
   }
-  if (nameLower.includes("burger") || nameLower.includes("pizza")) {
+  if (nameLower.includes("lontong") || nameLower.includes("sayur")) {
+    return { calories: 350, carbs: 48, fat: 12, fiber: 3, protein: 10 };
+  } else if (nameLower.includes("mie aceh") || nameLower.includes("mie") || nameLower.includes("aceh")) {
+    return { calories: 480, carbs: 62, fat: 16, fiber: 2, protein: 14 };
+  } else if (nameLower.includes("burger") || nameLower.includes("pizza")) {
     return { calories: 550, carbs: 45, fat: 25, fiber: 3, protein: 20 };
   } else if (nameLower.includes("salad") || nameLower.includes("sayur") || nameLower.includes("gado")) {
     return { calories: 150, carbs: 10, fat: 8, fiber: 4, protein: 3 };
@@ -90,6 +95,18 @@ function generateSimulationRecipe(foodName: string) {
       recipeTitle: "Bukan Makanan Valid 🚫",
       recipeIngredients: "Tidak ada bahan; Gambar ini dideteksi sebagai objek non-makanan.",
       recipeInstructions: "Sistem mendeteksi bahwa gambar yang Anda pindai bukanlah makanan. Silakan ambil atau pilih foto hidangan makanan yang valid untuk melihat rincian resep dan kandungan nutrisinya secara akurat!"
+    };
+  } else if (nameLower.includes("lontong") || nameLower.includes("sayur")) {
+    return {
+      recipeTitle: "Resep Lontong Sayur Gurih Lebaran",
+      recipeIngredients: "5 buah lontong siap saji (potong-potong); 1 buah labu siam (iris korek api); 100 gram tempe (potong dadu); 2 batang serai (memarkan); 3 lembar daun salam; 1 liter santan sedang; Bumbu halus: 6 siung bawang merah, 3 siung bawang putih, 4 butir kemiri, 2 cm kunyit, 5 cabai merah keriting, 1 sdt ketumbar, garam dan gula pasir secukupnya; Pelengkap: telur rebus, kerupuk merah, bawang goreng",
+      recipeInstructions: "1. Tumis bumbu halus bersama serai dan daun salam hingga harum dan matang.\n2. Masukkan irisan labu siam dan tempe dadu, aduk rata hingga labu layu.\n3. Tuang santan perlahan sambil diaduk agar santan tidak pecah. Masak hingga mendidih dengan api sedang.\n4. Tambahkan garam, gula pasir, dan kaldu bubuk sesuai selera. Masak hingga labu siam empuk.\n5. Potong-potong lontong di mangkuk, siram dengan sayur labu siam bersantan hangat.\n6. Sajikan hangat dengan pelengkap telur rebus, taburan bawang goreng, dan kerupuk merah."
+    };
+  } else if (nameLower.includes("mie aceh") || nameLower.includes("mie") || nameLower.includes("aceh")) {
+    return {
+      recipeTitle: "Resep Mie Aceh Goreng Basah Pedas Mantap",
+      recipeIngredients: "400 gram mie kuning basah; 150 gram daging sapi (rebus, potong dadu); 50 gram tauge segar; 50 gram kol (iris halus); 1 batang daun bawang (iris); 2 sdm kecap manis; 1 sdm kecap asin; 200 ml kaldu sapi murni; Bumbu halus: 6 betir bawang merah, 4 siung bawang putih, 4 cabai merah besar, 3 cabai rawit, 1/2 sdt jinten bubuk, 1/2 sdt ketumbar bubuk, 2 butir kapulaga, 1 cm kunyit, garam secukupnya; Pelengkap: acar bawang merah, emping melinjo, irisan jeruk nipis",
+      recipeInstructions: "1. Tumis bumbu halus hingga harum dan matang. Masukkan potongan daging sapi rebus, aduk rata.\n2. Tambahkan kol, tauge, dan daun bawang, aduk hingga sayuran agak layu.\n3. Masukkan mie kuning basah, kecap manis, kecap asin, garam, dan kaldu sapi. Aduk rata agar bumbu meresap.\n4. Masak hingga kuah kaldu menyusut dan mie matang (nyemek/goreng basah).\n5. Angkat dan sajikan selagi panas bersama acar bawang merah, kerupuk emping melinjo, dan perasan jeruk nipis."
     };
   } else if (nameLower.includes("lasagna")) {
     return {
@@ -187,6 +204,8 @@ function generateSimulationRecipe(foodName: string) {
 // Helper to extract a food category based on image filename keywords
 function getFallbackLabelFromFilename(filename: string): string {
   const fileLower = filename.toLowerCase();
+  if (fileLower.includes("lontong") || fileLower.includes("sayur")) return "Lontong Sayur";
+  if (fileLower.includes("mie_aceh") || fileLower.includes("mie-aceh") || fileLower.includes("aceh") || fileLower.includes("mie")) return "Mie Aceh";
   if (fileLower.includes("sate_matang") || fileLower.includes("sate-matang")) return "Sate Matang";
   if (fileLower.includes("nasilemak") || fileLower.includes("lemak")) return "Nasi Lemak";
   if (fileLower.includes("nasigoreng") || fileLower.includes("goreng")) return "Nasi Goreng";
@@ -223,7 +242,27 @@ function generateSimulationExtraFields(foodName: string) {
     { name: "Sari Ratu", address: "Jl. Thamrin No. 45, Jakarta", rating: 4.5 }
   ];
 
-  if (nameLower.includes("sate matang")) {
+  if (nameLower.includes("lontong") || nameLower.includes("sayur")) {
+    scientificName = "Artocarpus heterophyllus (Nangka Muda) / Sechium edule (Labu Siam)";
+    origin = "Betawi, Jakarta, Indonesia";
+    healthAnalysis = "Lontong Sayur menyajikan energi karbohidrat tinggi dari lontong beras, dilengkapi vitamin C dan serat dari labu siam. Karena mengandung kuah santan kental, batasi konsumsi berlebih untuk menjaga kadar kolesterol tetap stabil. Menambahkan telur rebus akan melengkapi kebutuhan protein Anda.";
+    halalStatus = "Halal";
+    halalReason = "Seluruh bahan yang digunakan mulai dari beras, sayuran segar, bumbu dapur, santan kelapa murni, hingga telur rebus adalah bahan makanan halal alamiah.";
+    suggestedRestaurants = [
+      { name: "Lontong Sayur Cihapit", address: "Jl. Cihapit, Bandung", rating: 4.6 },
+      { name: "Lontong Sayur Medan Kak Lin", address: "Jl. Cik Di Tiro, Medan", rating: 4.5 }
+    ];
+  } else if (nameLower.includes("mie aceh") || nameLower.includes("mie") || nameLower.includes("aceh")) {
+    scientificName = "Triticum aestivum (Gandum - Bahan Mie Kuning)";
+    origin = "Aceh, Indonesia";
+    healthAnalysis = "Mie Aceh kaya karbohidrat dan protein dari potongan daging sapi serta asam amino dari sayuran kol dan tauge. Rempah-rempah yang melimpah seperti jinten, kapulaga, dan kunyit kaya antioksidan dan membantu melancarkan pencernaan. Sebaiknya konsumsi dengan porsi wajar karena bumbu rempahnya pekat.";
+    halalStatus = "Halal";
+    halalReason = "Menggunakan mie gandum halal, daging sapi segar bersertifikasi halal, bumbu rempah-rempah alami, serta sayuran kol dan tauge segar 100% halal.";
+    suggestedRestaurants = [
+      { name: "Mie Aceh Jaly-Jaly", address: "Jl. Prof. DR. Soepomo, Tebet, Jakarta Selatan", rating: 4.7 },
+      { name: "Mie Razali", address: "Jl. T. Panglima Polem, Banda Aceh", rating: 4.6 }
+    ];
+  } else if (nameLower.includes("sate matang")) {
     scientificName = "Bos taurus (Daging Sapi) / Capra hircus (Kambing)";
     origin = "Bireuen, Aceh, Indonesia";
     healthAnalysis = "Sate Matang kaya protein tinggi dan zat besi. Namun, proses pembakaran arang berpotensi menghasilkan senyawa karsinogenik. Disarankan dikonsumsi dengan sayur atau timun untuk menyeimbangkan antioksidan.";
@@ -736,7 +775,8 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
       recipeTitle,
       recipeThumb,
       recipeIngredients,
-      recipeInstructions
+      recipeInstructions,
+      isSimulated: !usedGemini
     });
 
   } catch (err: any) {
