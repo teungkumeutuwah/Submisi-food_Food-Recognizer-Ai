@@ -25,25 +25,33 @@ Berikut adalah riwayat catatan dari Reviewer Dicoding beserta solusi teknis konk
     > *"Proyek submission mengalami error saat di-build menggunakan Flutter SDK terbaru (versi 3.44). Silakan sesuaikan versi Gradle yang digunakan pada proyek ini agar kompatibel dengan Flutter SDK terbaru."*
 *   **Solusi Teknis:**
     Masalah ini disebabkan oleh ketidakcocokan versi compile Java (JDK 17 atau JDK 21 yang digunakan Flutter 3.44 menghasilkan berkas class major version 65) dengan versi Gradle wrapper yang lama. Kami telah memperbarui dan menyelaraskan konfigurasi build:
-    1.  **Gradle Wrapper (`gradle-wrapper.properties`):** Di-upgrade ke **Gradle 8.7** (`gradle-8.7-all.zip`) yang mendukung penuh JDK 17 & JDK 21.
-    2.  **Android Gradle Plugin (AGP):** Di-upgrade ke versi **`8.3.2`** pada `settings.gradle` untuk sinkronisasi build yang mulus.
-    3.  **Kotlin Compiler:** Di-upgrade ke versi **`1.9.22`** agar kompatibel dengan Gradle 8.7 dan mencegah error analisis semantik.
-    4.  **Target SDK & Compile SDK:** Ditingkatkan ke **SDK 34 (Android 14)** untuk menyesuaikan dengan regulasi Google Play Store dan standar Flutter 3.44.
+    1.  **Gradle Wrapper (`gradle-wrapper.properties`):** Di-upgrade ke **Gradle 8.7 / 8.9** yang mendukung penuh JDK 17 & JDK 21.
+    2.  **Kotlin Compiler:** Di-upgrade ke versi **`1.9.22`** agar kompatibel dengan Gradle modern dan mencegah error analisis semantik.
+    3.  **Target SDK & Compile SDK:** Ditingkatkan ke **SDK 34 (Android 14)** untuk menyesuaikan dengan regulasi Google Play Store dan standar Flutter 3.44.
 
 #### 🔴 SUBMISI 3: Metode Loader Plugin Lama (`apply from` usang) vs Metode Deklaratif Baru
 *   **Catatan Reviewer:**
     > *"Tugas proyek yang dikirimkan masih belum berhasil di-build karena adanya ketidakcocokan antara metode konfigurasi Gradle proyek dengan standar Flutter SDK stable terbaru. Masalah ini terjadi karena berkas android/settings.gradle di proyekmu masih menggunakan cara lama (apply from: ...app_plugin_loader.gradle) untuk memuat plugin. Flutter SDK versi terbaru mewajibkan penggunaan metode deklaratif lewat blok plugins."*
 *   **Solusi Teknis:**
     Kami telah melakukan migrasi arsitektur build Android dari cara imperatif lama ke metode deklaratif modern sesuai anjuran resmi Flutter:
-    1.  **Migrasi `android/settings.gradle`:** Menghapus baris pemanggilan manual `apply from: ...app_plugin_loader.gradle` dan menggantinya dengan blok `plugins` deklaratif modern:
+    1.  **Migrasi `android/settings.gradle`:** Menghapus baris pemanggilan manual `apply from: ...app_plugin_loader.gradle` dan menggantinya dengan blok `plugins` deklaratif modern.
+    2.  **Pembersihan Dependensi Usang (`android/app/build.gradle`):** Menghapus baris `implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"` yang tidak lagi diperlukan pada Kotlin modern dan sering memicu error konflik duplikasi pustaka stdlib saat build dijalankan.
+
+#### 🔴 SUBMISI 4: Batas Minimum Versi Android Gradle Plugin (AGP) 8.6.0
+*   **Catatan Reviewer:**
+    > *"Tugas proyek yang dikirimkan masih belum berhasil di-build karena terdapat ketidakcocokan antara versi Android Gradle Plugin (AGP) yang digunakan pada proyek (versi 8.3.2) dengan batas minimum yang dibutuhkan oleh Flutter (versi 8.6.0)..."*
+*   **Solusi Teknis:**
+    Kami telah memperbarui versi AGP dan menyelaraskan versi Gradle Wrapper agar memenuhi batas minimum dan lulus validasi Flutter SDK terbaru:
+    1.  **Upgrade AGP di `android/settings.gradle`:**
         ```groovy
         plugins {
             id "dev.flutter.flutter-gradle-plugin" apply false
-            id "com.android.application" version "8.3.2" apply false
+            id "com.android.application" version "8.6.0" apply false
             id "org.jetbrains.kotlin.android" version "1.9.22" apply false
         }
         ```
-    2.  **Pembersihan Dependensi Usang (`android/app/build.gradle`):** Menghapus baris `implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"` yang tidak lagi diperlukan pada Kotlin modern dan sering memicu error konflik duplikasi pustaka stdlib saat build dijalankan.
+    2.  **Upgrade Gradle Wrapper di `android/gradle/wrapper/gradle-wrapper.properties`:**
+        Meningkatkan `distributionUrl` ke versi **`gradle-8.9-all.zip`** untuk mendukung penuh AGP 8.6.0 dan JDK 17/21 tanpa masalah kompatibilitas.
 
 ---
 
@@ -142,7 +150,7 @@ Aplikasi ini telah dirancang dengan cermat dan memenuhi seluruh kriteria kelulus
 │   ├── build.gradle                # Kotlin Classpath & Dependencies Setup
 │   ├── settings.gradle             # Blok Plugins Deklaratif Terbaru (Flutter SDK 3.44+)
 │   └── gradle/wrapper/
-│       └── gradle-wrapper.properties # Gradle Wrapper v8.7 (JDK 17/21 Compatible)
+│       └── gradle-wrapper.properties # Gradle Wrapper v8.9 (JDK 17/21 Compatible)
 ├── ios/                            # Konfigurasi iOS Native
 ├── pubspec.yaml                    # File Konfigurasi Dependensi Flutter
 └── README.md                       # Dokumentasi Lengkap Proyek
