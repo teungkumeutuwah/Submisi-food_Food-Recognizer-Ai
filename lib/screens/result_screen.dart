@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:flutter/material';
+import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import '../models/food_model.dart';
