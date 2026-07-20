@@ -55,6 +55,24 @@ Berikut adalah riwayat catatan dari Reviewer Dicoding beserta solusi teknis konk
 
 ---
 
+### 📸 TAMPILAN ANTARMUKA APLIKASI (SCREENSHOTS) 🌟
+
+Berikut adalah tampilan antarmuka (UI/UX) aplikasi Food Recognizer AI yang modern, minimalis, dan dirancang dengan memperhatikan kontras warna, keterbacaan, serta aksesibilitas pengguna:
+
+#### 1. Dashboard Utama & Manajemen Riwayat (Home Screen)
+![Dashboard Preview](src/assets/images/dashboard_preview_1784539580796.jpg)
+*   **Fitur Utama:** Tombol pencarian makanan cepat saji, pemilih aksi instan (Kamera, Galeri, Scanner), widget rekomendasi hidangan harian berbasis bento-grid, serta daftar riwayat pemindaian makanan (*History Logs*) lokal yang tersimpan secara aman di dalam perangkat.
+
+#### 2. Hasil Analisis Gizi & Asal Kuliner (Result & Analysis View)
+![Result Preview](src/assets/images/result_preview_1784539596105.jpg)
+*   **Fitur Utama:** Visualisasi grafik nutrisi makro (Kalori, Protein, Karbohidrat, Lemak, Serat), badge dinamis **Asal Kuliner** daerah (misalnya: *"Bireuen, Aceh, Indonesia"*), sertifikasi halal MUI beserta analisis titik kritis bahan makanan, serta **Floating Speaker Action Button (TTS)** untuk mendengarkan rangkuman verbal analisis gizi secara interaktif.
+
+#### 3. Detail Resep Tradisional & Rekomendasi Restoran (Recipe & Restaurants View)
+![Recipe Preview](src/assets/images/recipe_preview_1784539610611.jpg)
+*   **Fitur Utama:** Daftar bahan-bahan masakan autentik lengkap dengan kuantitasnya, panduan memasak langkah demi langkah yang ringkas, serta rekomendasi tempat kuliner riil terpopuler di Indonesia lengkap dengan alamat peta ringkas dan penilaian bintang (*Google Rating*).
+
+---
+
 ### 🎨 CHECKLIST PENILAIAN & FITUR UTAMA 🎯
 
 Aplikasi ini telah dirancang dengan cermat dan memenuhi seluruh kriteria kelulusan utama (maupun nilai plus) dari silabus penilai Dicoding Academy:

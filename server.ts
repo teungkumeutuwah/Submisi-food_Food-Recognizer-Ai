@@ -214,6 +214,7 @@ function getFallbackLabelFromFilename(filename: string): string {
 function generateSimulationExtraFields(foodName: string) {
   const nameLower = foodName.toLowerCase();
   let scientificName = "Oryza sativa";
+  let origin = "Nusantara, Indonesia";
   let healthAnalysis = "Sangat lezat dan bergizi seimbang.";
   let halalStatus = "Halal";
   let halalReason = "Terbuat dari bahan-bahan nabati alami yang halal.";
@@ -224,6 +225,7 @@ function generateSimulationExtraFields(foodName: string) {
 
   if (nameLower.includes("sate matang")) {
     scientificName = "Bos taurus (Daging Sapi) / Capra hircus (Kambing)";
+    origin = "Bireuen, Aceh, Indonesia";
     healthAnalysis = "Sate Matang kaya protein tinggi dan zat besi. Namun, proses pembakaran arang berpotensi menghasilkan senyawa karsinogenik. Disarankan dikonsumsi dengan sayur atau timun untuk menyeimbangkan antioksidan.";
     halalStatus = "Halal";
     halalReason = "Daging sapi atau kambing yang disembelih secara syariat Islam. Bumbu kacang dan bumbu rempah kuah kaldu murni menggunakan bahan-bahan halal.";
@@ -233,6 +235,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("sate")) {
     scientificName = "Gallus gallus domesticus (Ayam)";
+    origin = "Madura, Jawa Timur, Indonesia";
     healthAnalysis = "Sate ayam merupakan sumber protein tanpa lemak yang sangat baik terutama jika menggunakan dada ayam. Batasi porsi bumbu kacang jika sedang membatasi kalori, karena kacang mengandung lemak tinggi (meski lemak sehat).";
     halalStatus = "Halal";
     halalReason = "Ayam segar bersertifikat halal disembelih sesuai syariat. Bumbu kacang dan kecap manis diolah secara halal bebas dari khamar atau alkohol.";
@@ -242,15 +245,17 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("nasi goreng")) {
     scientificName = "Oryza sativa (Beras)";
+    origin = "Nusantara, Indonesia";
     healthAnalysis = "Nasi goreng mengandung karbohidrat yang tinggi sebagai sumber energi cepat. Kandungan minyak dan lemak dari proses penggorengan perlu dibatasi. Menambahkan telur atau ayam akan meningkatkan rasio protein masakan.";
     halalStatus = "Halal";
-    halalReason = "Nasi putih dan bumbu dapur standar seperti bawang merah, bawang putih, dan cabai bersifat halal alami. Gunakan kecap manis dan kecap asin yang memiliki sertifikasi halal resmi.";
+    halalReason = "Nasi putih and bumbu dapur standar seperti bawang merah, bawang putih, dan cabai bersifat halal alami. Gunakan kecap manis dan kecap asin yang memiliki sertifikasi halal resmi.";
     suggestedRestaurants = [
       { name: "Nasi Goreng Kambing Kebon Sirih", address: "Jl. Kebon Sirih, Menteng, Jakarta Pusat", rating: 4.5 },
       { name: "Nasi Goreng Gila Gondrong", address: "Jl. Besuki No. 1, Menteng", rating: 4.6 }
     ];
   } else if (nameLower.includes("lasagna")) {
     scientificName = "Triticum aestivum (Gandum - Lembaran Lasagna)";
+    origin = "Italia";
     healthAnalysis = "Kaya karbohidrat dan kalsium tinggi dari tumpukan keju mozzarella serta bechamel sauce. Mengandung protein dari daging sapi cincang. Masakan ini padat kalori, sehingga porsi konsumsinya perlu dikontrol.";
     halalStatus = "Halal";
     halalReason = "Menggunakan daging sapi halal dan produk olahan susu (keju, mentega) yang berlogo halal. Pastikan saus bolognese tidak dicampur dengan white/red wine.";
@@ -260,6 +265,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("stew") || nameLower.includes("sop") || nameLower.includes("semur")) {
     scientificName = "Bos taurus (Sapi) & Solanum tuberosum (Kentang)";
+    origin = "Eropa / Belanda";
     healthAnalysis = "Beef stew adalah masakan berkuah yang sangat bergizi tinggi, kaya akan vitamin A dari wortel, kalium dari kentang, dan zat besi serta asam amino esensial dari daging sapi yang dimasak perlahan.";
     halalStatus = "Halal";
     halalReason = "Menggunakan potongan daging sapi segar halal, sayur-sayuran segar, dan kuah kaldu rempah alami bebas dari alkohol masakan (mirin, angciu).";
@@ -269,6 +275,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("rendang")) {
     scientificName = "Bos taurus (Sapi) & Cocos nucifera (Kelapa - Santan)";
+    origin = "Minangkabau, Sumatera Barat";
     healthAnalysis = "Rendang sangat kaya akan zat besi, protein, dan seng. Namun, santan kental yang dimasak dalam waktu lama meningkatkan kandungan asam lemak jenuh. Sangat nikmat jika dikonsumsi dalam porsi sedang.";
     halalStatus = "Halal";
     halalReason = "Daging sapi halal dimasak dengan bumbu rempah tradisional murni dan santan kelapa segar yang 100% halal alami.";
@@ -278,6 +285,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("bakso")) {
     scientificName = "Bos taurus (Sapi - Daging Bakso)";
+    origin = "Solo, Jawa Tengah, Indonesia";
     healthAnalysis = "Bakso menyediakan sumber protein hewani yang praktis. Kuah kaldu hangat membantu hidrasi tubuh. Batasi konsumsi garam berlebih dari penyedap rasa (MSG) di kuahnya.";
     halalStatus = "Halal";
     halalReason = "Daging bakso sapi giling bersertifikat halal, dicampur tepung sagu/tapioka alami. Kuah kaldu dibuat murni dari rebusan sumsum dan tulang sapi halal.";
@@ -287,6 +295,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("soto")) {
     scientificName = "Gallus gallus domesticus (Ayam - Soto)";
+    origin = "Lamongan, Jawa Timur, Indonesia";
     healthAnalysis = "Soto ayam merupakan sup hangat yang menyegarkan dan rendah kalori jika kuahnya bening (non-santan). Kunyit pada bumbu kuning mengandung kurkumin yang berfungsi sebagai antiinflamasi alami.";
     halalStatus = "Halal";
     halalReason = "Soto menggunakan bahan dasar ayam and bumbu rempah tradisional alami (serai, jahe, kunyit) yang halal tanpa zat aditif mencurigakan.";
@@ -296,6 +305,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("gado")) {
     scientificName = "Arachis hypogaea (Kacang Tanah - Bumbu)";
+    origin = "Betawi, Jakarta, Indonesia";
     healthAnalysis = "Sangat sehat! Kaya serat pangan, vitamin, dan mineral dari aneka sayuran segar rebus (kangkung, tauge, kol). Protein nabati disuplai dari tahu dan tempe. Bumbu kacang memberikan lemak tak jenuh ganda yang baik.";
     halalStatus = "Halal";
     halalReason = "Terdiri atas sayur-sayuran, tahu, tempe, telur rebus, dan bumbu kacang tanah tradisional yang bebas dari segala unsur haram.";
@@ -305,6 +315,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("martabak")) {
     scientificName = "Triticum aestivum (Tepung Terigu Martabak)";
+    origin = "Bangka, Indonesia";
     healthAnalysis = "Makanan pencuci mulut yang sangat padat kalori, gula, dan mentega. Sangat disarankan dikonsumsi sebagai camilan sesekali bersama kerabat atau keluarga agar asupan kalori harian tidak melonjak.";
     halalStatus = "Halal";
     halalReason = "Terigu, telur, keju, dan cokelat manis merupakan bahan konsumsi halal. Pastikan mentega/butter yang digunakan telah mendapat sertifikasi halal MUI.";
@@ -314,15 +325,17 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("burger")) {
     scientificName = "Triticum aestivum (Roti) & Bos taurus (Daging Sapi)";
+    origin = "Amerika Serikat";
     healthAnalysis = "Mengandung gizi makro lengkap: karbohidrat (roti), protein (daging sapi patty), kalsium (keju), dan vitamin (selada & tomat). Kurangi mayones komersial untuk menekan asupan lemak jenuh berlebih.";
     halalStatus = "Halal";
-    halalReason = "Pastikan beef patty menggunakan daging sapi bersertifikat halal dan dipanggang menggunakan mentega berlogo halal tanpa lemak babi/lard.";
+    halalReason = "Pastikan beef patty menggunakan daging sapi bersertifikat halal and dipanggang menggunakan mentega berlogo halal tanpa lemak babi/lard.";
     suggestedRestaurants = [
       { name: "Traffic Bun", address: "Jl. Fatmawati No. 12, Jakarta Selatan", rating: 4.5 },
       { name: "Burger Bangor", address: "Jl. Margonda Raya, Depok", rating: 4.6 }
     ];
   } else if (nameLower.includes("pizza")) {
     scientificName = "Triticum aestivum (Tepung Pizza)";
+    origin = "Napoli, Italia";
     healthAnalysis = "Pizza menyajikan karbohidrat dari adonan tepung gandum and lemak/protein dari keju mozzarella melimpah serta topping daging sosis. Agar lebih sehat, pilih pizza dengan topping sayuran segar.";
     halalStatus = "Halal";
     halalReason = "Adonan pizza terbuat dari ragi, terigu, garam, dan air (halal). Topping sosis sapi/ayam dan keju mozzarella harus bersertifikat halal MUI.";
@@ -332,6 +345,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else if (nameLower.includes("salad")) {
     scientificName = "Lactuca sativa (Selada Hijau)";
+    origin = "Yunani / Mediterania";
     healthAnalysis = "Pilihan paling sehat dan kaya serat pangan, antioksidan, dan zat gizi mikro. Bermanfaat memperlancar pencernaan dan menjaga berat badan ideal. Gunakan olive oil dressing atau lemon dressing sebagai opsi lebih rendah kalori.";
     halalStatus = "Halal";
     halalReason = "Sayuran segar 100% alami dan halal. Dressing salad standar seperti minyak zaitun, garam, dan mayones telur adalah bahan konsumsi halal.";
@@ -341,6 +355,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   } else {
     scientificName = "Cibus deliciosis (Istilah Umum Kuliner)";
+    origin = "Nusantara, Indonesia";
     healthAnalysis = "Masakan ini merupakan hidangan nikmat yang menyuplai energi harian yang seimbang. Lengkapi hidangan ini dengan sayur mayur segar dan segelas air putih untuk gizi yang optimal harian.";
     halalStatus = "Halal";
     halalReason = "Terbuat dari bahan-bahan masakan umum Indonesia yang bersertifikasi halal secara alamiah dan diolah secara higienis.";
@@ -350,7 +365,7 @@ function generateSimulationExtraFields(foodName: string) {
     ];
   }
 
-  return { scientificName, healthAnalysis, halalStatus, halalReason, suggestedRestaurants };
+  return { scientificName, origin, healthAnalysis, halalStatus, halalReason, suggestedRestaurants };
 }
 
 
@@ -416,6 +431,7 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
     let recipeIngredients = "";
     let recipeInstructions = "";
     let scientificName = "";
+    let origin = "";
     let healthAnalysis = "";
     let halalStatus = "Halal";
     let halalReason = "";
@@ -432,25 +448,27 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
           Untuk makanan yang teridentifikasi dalam gambar, berikan informasi gizi, resep, analisis gizi, status kehalalan, nama ilmiah, serta saran restoran lokal berikut:
           1. name: Nama hidangan dalam Bahasa Indonesia yang umum dan ringkas (misal: 'Nasi Goreng', 'Sate Ayam', 'Burger', dll.).
           2. scientificName: Nama ilmiah hidangan atau bahan utama paling esensial dalam miring/italic (misal: 'Gallus gallus domesticus' untuk sate ayam, atau 'Oryza sativa' untuk nasi goreng).
-          3. englishName: Nama hidangan dalam Bahasa Inggris yang paling cocok untuk dicari di database resep global (misal: 'Fried Rice', 'Chicken Satay', 'Meatballs', dll.).
-          4. confidence: Akurasi kecocokan klasifikasi (angka desimal antara 0.80 hingga 0.99).
-          5. calories: Kalori makanan (dalam kkal, berupa angka bulat saja).
-          6. carbs: Karbohidrat makanan (dalam gram, berupa angka bulat saja).
-          7. fat: Lemak makanan (dalam gram, berupa angka bulat saja).
-          8. fiber: Serat makanan (dalam gram, berupa angka bulat saja).
-          9. protein: Protein makanan (dalam gram, berupa angka bulat saja).
-          10. healthAnalysis: Analisis kualitatif detail tentang kesehatan dan gizi makanan ini, keunggulan gizi, kecocokan diet (misal: tinggi protein, tinggi serat), bahaya jika dikonsumsi berlebih, serta solusi penyajian lebih sehat dalam Bahasa Indonesia.
-          11. halalStatus: Status kehalalan hidangan ini, pilih salah satu dari: "Halal", "Syubhah", atau "Non-Halal".
-          12. halalReason: Penjelasan terperinci mengapa makanan ini dikategorikan dengan status tersebut, termasuk bahan titik kritis halal.
-          13. recipeTitle: Judul resep masakan yang elegan dalam Bahasa Indonesia (misal: 'Resep Sate Ayam Madura Autentik').
-          14. recipeIngredients: Daftar bahan-bahan masakan dipisahkan oleh titik koma dan spasi '; ' dalam Bahasa Indonesia yang baik dan benar.
-          15. recipeInstructions: Langkah-langkah memasak lengkap dan berurutan dalam Bahasa Indonesia, dipisahkan oleh karakter baris baru '\\n'.
-          16. suggestedRestaurants: Rekomendasi 2-3 restoran riil atau warung terkenal di Indonesia yang menyajikan makanan ini, berupa daftar objek dengan nama, alamat (singkat, misal: 'Jakarta Selatan'), dan rating (desimal antara 4.0 hingga 5.0).
+          3. origin: Asal usul daerah/negara asal makanan ini (misal: 'Bireuen, Aceh, Indonesia' untuk sate matang, 'Madura, Jawa Timur, Indonesia' untuk sate ayam, 'Minangkabau, Sumatera Barat' untuk rendang, 'Italia' untuk pizza, dll.).
+          4. englishName: Nama hidangan dalam Bahasa Inggris yang paling cocok untuk dicari di database resep global (misal: 'Fried Rice', 'Chicken Satay', 'Meatballs', dll.).
+          5. confidence: Akurasi kecocokan klasifikasi (angka desimal antara 0.80 hingga 0.99).
+          6. calories: Kalori makanan (dalam kkal, berupa angka bulat saja).
+          7. carbs: Karbohidrat makanan (dalam gram, berupa angka bulat saja).
+          8. fat: Lemak makanan (dalam gram, berupa angka bulat saja).
+          9. fiber: Serat makanan (dalam gram, berupa angka bulat saja).
+          10. protein: Protein makanan (dalam gram, berupa angka bulat saja).
+          11. healthAnalysis: Analisis kualitatif detail tentang kesehatan dan gizi makanan ini, keunggulan gizi, kecocokan diet (misal: tinggi protein, tinggi serat), bahaya jika dikonsumsi berlebih, serta solusi penyajian lebih sehat dalam Bahasa Indonesia.
+          12. halalStatus: Status kehalalan hidangan ini, pilih salah satu dari: "Halal", "Syubhah", atau "Non-Halal".
+          13. halalReason: Penjelasan terperinci mengapa makanan ini dikategorikan dengan status tersebut, termasuk bahan titik kritis halal.
+          14. recipeTitle: Judul resep masakan yang elegan dalam Bahasa Indonesia (misal: 'Resep Sate Ayam Madura Autentik').
+          15. recipeIngredients: Daftar bahan-bahan masakan dipisahkan oleh titik koma dan spasi '; ' dalam Bahasa Indonesia yang baik dan benar.
+          16. recipeInstructions: Langkah-langkah memasak lengkap dan berurutan dalam Bahasa Indonesia, dipisahkan oleh karakter baris baru '\\n'.
+          17. suggestedRestaurants: Rekomendasi 2-3 restoran riil atau warung terkenal di Indonesia yang menyajikan makanan ini, berupa daftar objek dengan nama, alamat (singkat, misal: 'Jakarta Selatan'), dan rating (desimal antara 4.0 hingga 5.0).
 
           Format output harus berupa JSON valid dengan struktur persis berikut:
           {
             "name": "Nama Makanan",
             "scientificName": "Scientific Name",
+            "origin": "Asal Makanan (Daerah/Negara)",
             "englishName": "English Name",
             "confidence": 0.95,
             "calories": 350,
@@ -495,6 +513,10 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
                 scientificName: {
                   type: Type.STRING,
                   description: "Nama ilmiah atau taksonomi biologi bahan utama makanan ini (misal: 'Gallus gallus domesticus' untuk ayam, 'Oryza sativa' untuk nasi).",
+                },
+                origin: {
+                  type: Type.STRING,
+                  description: "Asal usul daerah atau negara asal makanan ini (misal: 'Minangkabau, Sumatera Barat', 'Italia', 'Bireuen, Aceh, Indonesia').",
                 },
                 englishName: {
                   type: Type.STRING,
@@ -565,6 +587,7 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
               required: [
                 "name",
                 "scientificName",
+                "origin",
                 "englishName",
                 "confidence",
                 "calories",
@@ -608,6 +631,7 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
         };
 
         scientificName = parsed.scientificName || "";
+        origin = parsed.origin || "";
         healthAnalysis = parsed.healthAnalysis || "";
         halalStatus = parsed.halalStatus || "Halal";
         halalReason = parsed.halalReason || "";
@@ -620,8 +644,14 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
           recipeInstructions = parsed.recipeInstructions;
         }
         usedGemini = true;
-      } catch (geminiError) {
-        console.error("Gemini Scan Error:", geminiError);
+      } catch (geminiError: any) {
+        const errStr = String(geminiError);
+        const isQuota = errStr.includes("429") || errStr.toLowerCase().includes("quota") || errStr.includes("RESOURCE_EXHAUSTED");
+        if (isQuota) {
+          console.log("Gemini API Quota Exceeded (429). Falling back to smart local simulation mode.");
+        } else {
+          console.log("Gemini Scan Notice (Falling back to local simulation):", geminiError?.message || geminiError);
+        }
         // Fall back to simulation if Gemini fails
       }
     }
@@ -643,6 +673,7 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
 
       const simExtras = generateSimulationExtraFields(foodName);
       scientificName = simExtras.scientificName;
+      origin = simExtras.origin;
       healthAnalysis = simExtras.healthAnalysis;
       halalStatus = simExtras.halalStatus;
       halalReason = simExtras.halalReason;
@@ -696,6 +727,7 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
       fiber: nutrition.fiber,
       protein: nutrition.protein,
       scientificName,
+      origin,
       healthAnalysis,
       halalStatus,
       halalReason,

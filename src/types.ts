@@ -7,6 +7,7 @@ export interface ScannedFood {
   
   // New Fields requested by user
   scientificName?: string;     // Scientific Name (Nama Ilmiah)
+  origin?: string;             // Food Origin (Asal Makanan)
   healthAnalysis?: string;     // Qualitative Health & Nutrition Analysis
   halalStatus?: string;        // Halal status ("Halal", "Syubhah", "Non-Halal")
   halalReason?: string;        // Explanation of halal status

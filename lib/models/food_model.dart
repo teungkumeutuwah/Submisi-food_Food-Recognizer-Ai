@@ -1,6 +1,7 @@
 class FoodModel {
   final String name;
   final String scientificName;
+  final String origin;
   final String englishName;
   final double confidence;
   final int calories;
@@ -19,6 +20,7 @@ class FoodModel {
   FoodModel({
     required this.name,
     required this.scientificName,
+    required this.origin,
     required this.englishName,
     required this.confidence,
     required this.calories,
@@ -44,6 +46,7 @@ class FoodModel {
     return FoodModel(
       name: json['name'] ?? '',
       scientificName: json['scientificName'] ?? '',
+      origin: json['origin'] ?? '',
       englishName: json['englishName'] ?? '',
       confidence: (json['confidence'] as num?)?.toDouble() ?? 0.0,
       calories: json['calories'] ?? 0,
@@ -65,6 +68,7 @@ class FoodModel {
     return {
       'name': name,
       'scientificName': scientificName,
+      'origin': origin,
       'englishName': englishName,
       'confidence': confidence,
       'calories': calories,

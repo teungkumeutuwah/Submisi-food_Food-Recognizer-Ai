@@ -35,7 +35,8 @@ export const ResultView: React.FC<ResultViewProps> = ({
       return;
     }
 
-    const text = `Hasil analisis makanan. Menu ini diidentifikasi sebagai ${foodItem.name}. ` +
+    const originText = foodItem.origin ? `Makanan ini khas berasal dari ${foodItem.origin}. ` : "";
+    const text = `Hasil analisis makanan. Menu ini diidentifikasi sebagai ${foodItem.name}. ${originText}` +
       `Kandungan gizi terdiri dari: kalori sebesar ${foodItem.calories} kilo kalori, ` +
       `protein ${foodItem.protein} gram, karbohidrat ${foodItem.carbs} gram, ` +
       `dan lemak ${foodItem.fat} gram. ` +
@@ -178,10 +179,21 @@ export const ResultView: React.FC<ResultViewProps> = ({
               <h2 className="text-lg font-black text-gray-900 truncate leading-tight">
                 {foodItem.name}
               </h2>
-              {/* Scientific name label */}
-              <span className="text-xs font-semibold text-emerald-600 mt-1 block italic">
-                {foodItem.scientificName || "Cibus deliciosis"}
-              </span>
+              <div className="flex flex-wrap items-center gap-x-2 mt-1">
+                {/* Scientific name label */}
+                <span className="text-xs font-semibold text-emerald-600 italic">
+                  {foodItem.scientificName || "Cibus deliciosis"}
+                </span>
+                {foodItem.origin && (
+                  <>
+                    <span className="text-gray-300 text-xs shrink-0">•</span>
+                    <span className="text-xs font-semibold text-gray-500 flex items-center gap-0.5">
+                      <MapPin size={11} className="text-rose-500 shrink-0" />
+                      {foodItem.origin}
+                    </span>
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Confidence progress */}
@@ -200,8 +212,8 @@ export const ResultView: React.FC<ResultViewProps> = ({
           </div>
         </div>
 
-        {/* 2. Scientific Name & Halal Status Badges */}
-        <div className="mt-4 px-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {/* 2. Scientific Name, Origin, & Halal Status Badges */}
+        <div className={`mt-4 px-4 grid grid-cols-1 ${foodItem.origin ? "sm:grid-cols-3" : "sm:grid-cols-2"} gap-3`}>
           {/* Scientific Name Card */}
           <div className="bg-white rounded-2xl border border-gray-100 p-4 shadow-xs flex items-center gap-3">
             <div className="w-10 h-10 bg-sky-50 rounded-xl flex items-center justify-center text-sky-500 shrink-0">
@@ -214,6 +226,21 @@ export const ResultView: React.FC<ResultViewProps> = ({
               </span>
             </div>
           </div>
+
+          {/* Origin Card */}
+          {foodItem.origin && (
+            <div className="bg-white rounded-2xl border border-gray-100 p-4 shadow-xs flex items-center gap-3">
+              <div className="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center text-rose-500 shrink-0">
+                <MapPin size={20} />
+              </div>
+              <div>
+                <span className="text-[9px] font-black text-gray-400 uppercase tracking-wider block">Asal Kuliner</span>
+                <span className="text-sm font-bold text-gray-800 block">
+                  {foodItem.origin}
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* Halal Status Card */}
           <div className="bg-white rounded-2xl border border-gray-100 p-4 shadow-xs flex items-center gap-3">
