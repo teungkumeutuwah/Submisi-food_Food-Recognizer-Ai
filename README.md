@@ -73,6 +73,23 @@ Berikut adalah tampilan antarmuka (UI/UX) aplikasi Food Recognizer AI yang moder
 
 ---
 
+### 🗺️ ALUR KERJA APLIKASI (VISUAL WORKFLOW GUIDE) 🚀
+
+Untuk mempermudah pemahaman alur kerja utama pengguna (*user journey*) dari aplikasi Food Recognizer AI, berikut adalah panduan visual yang menggambarkan 3 langkah utama sistem dalam mengolah gambar hingga menyajikan resep dan gizi makro secara instan:
+
+![App Workflow Guide](src/assets/images/app_workflow_mockup_1784541011567.jpg)
+
+#### 🔄 Penjelasan Langkah Demi Langkah (User Journey):
+
+1. **Langkah 1: Pemilihan atau Pengambilan Foto Hidangan (Image Selection & Input)**
+   * Pengguna dapat memilih foto makanan dari galeri ponsel pintar, memindai secara instan menggunakan kamera live bawaan, atau menggunakan gambar sampel cepat (*quick samples*) yang disediakan di dashboard utama. Desain antarmuka dibuat lapang dan ramah pengguna dengan tombol aksi bento-grid.
+2. **Langkah 2: Proses Scan & Inferensi Cerdas (Real-Time Smart Scanning)**
+   * Gambar diproses di latar belakang (*background thread* via Dart Isolate) menggunakan model klasifikasi lokal LiteRT (TFLite) untuk menyaring objek non-makanan. Setelah divalidasi sebagai makanan, radar visual/animasi pemindaian yang memikat akan memandu transisi sembari mengirimkan data ke Google Gemini AI.
+3. **Langkah 3: Penyajian Informasi Nutrisi, Status Halal & Resep Tradisional (Detailed Analysis & Recipe Result)**
+   * Pengguna mendapatkan rincian lengkap gizi makro (kalori, karbohidrat, protein, lemak, serat) yang divisualisasikan dengan persentase grafik yang informatif. Dilengkapi asal kuliner, audit titik kritis status halal, rekomendasi restoran fisik lokal, resep memasak langkah-demi-langkah, serta fitur asisten suara Text-To-Speech (TTS).
+
+---
+
 ### 🎨 CHECKLIST PENILAIAN & FITUR UTAMA 🎯
 
 Aplikasi ini telah dirancang dengan cermat dan memenuhi seluruh kriteria kelulusan utama (maupun nilai plus) dari silabus penilai Dicoding Academy:

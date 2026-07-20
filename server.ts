@@ -484,11 +484,17 @@ app.post("/api/scan", upload.single("image"), async (req, res) => {
         const systemInstruction = `
           Anda adalah ahli gizi profesional, ilmuwan pangan, koki terampil, dan auditor sertifikasi halal yang bertugas memberikan informasi nutrisi makanan secara akurat, nama ilmiah bahan utama, analisis kesehatan, status halal, serta resep hidangan tersebut dalam Bahasa Indonesia.
           
+          PENTING: Berikan perhatian ekstra pada hidangan tradisional khas Indonesia. 
+          - Jika gambar menunjukkan kuah santan berwarna kuning kemerahan dengan potongan lontong/ketupat, telur, tahu, tempe, atau sayur labu siam, identifikasi dengan tingkat keyakinan (confidence) sangat tinggi sebagai 'Lontong Sayur' (bukan tacos, ramen, atau lasagna).
+          - Jika gambar menunjukkan mie kuning basah yang tebal dengan bumbu rempah pekat kemerahan/kecokelatan (nyemek atau goreng basah), dilengkapi daging sapi, tauge, kol, atau emping, identifikasi dengan tingkat keyakinan sangat tinggi sebagai 'Mie Aceh' (bukan spaghetti carbonara, pasta, ramen, atau tacos).
+          - Jika gambar menunjukkan sate dengan kuah kaldu/soto di sampingnya dan potongan daging sapi/kambing yang gurih dibakar, identifikasi sebagai 'Sate Matang'.
+          Harap hindari salah klasifikasi masakan Nusantara menjadi kuliner Barat/Meksiko/Jepang.
+
           Untuk makanan yang teridentifikasi dalam gambar, berikan informasi gizi, resep, analisis gizi, status kehalalan, nama ilmiah, serta saran restoran lokal berikut:
-          1. name: Nama hidangan dalam Bahasa Indonesia yang umum dan ringkas (misal: 'Nasi Goreng', 'Sate Ayam', 'Burger', dll.).
+          1. name: Nama hidangan dalam Bahasa Indonesia yang umum dan ringkas (misal: 'Nasi Goreng', 'Sate Ayam', 'Burger', 'Lontong Sayur', 'Mie Aceh', dll.).
           2. scientificName: Nama ilmiah hidangan atau bahan utama paling esensial dalam miring/italic (misal: 'Gallus gallus domesticus' untuk sate ayam, atau 'Oryza sativa' untuk nasi goreng).
-          3. origin: Asal usul daerah/negara asal makanan ini (misal: 'Bireuen, Aceh, Indonesia' untuk sate matang, 'Madura, Jawa Timur, Indonesia' untuk sate ayam, 'Minangkabau, Sumatera Barat' untuk rendang, 'Italia' untuk pizza, dll.).
-          4. englishName: Nama hidangan dalam Bahasa Inggris yang paling cocok untuk dicari di database resep global (misal: 'Fried Rice', 'Chicken Satay', 'Meatballs', dll.).
+          3. origin: Asal usul daerah/negara asal makanan ini (misal: 'Bireuen, Aceh, Indonesia' untuk sate matang, 'Aceh, Indonesia' untuk mie aceh, 'Betawi, Jakarta, Indonesia' untuk lontong sayur, dll.).
+          4. englishName: Nama hidangan dalam Bahasa Inggris yang paling cocok untuk dicari di database resep global (misal: 'Fried Rice', 'Chicken Satay', 'Meatballs', 'Lontong Sayur', 'Noodle Aceh', dll.).
           5. confidence: Akurasi kecocokan klasifikasi (angka desimal antara 0.80 hingga 0.99).
           6. calories: Kalori makanan (dalam kkal, berupa angka bulat saja).
           7. carbs: Karbohidrat makanan (dalam gram, berupa angka bulat saja).
